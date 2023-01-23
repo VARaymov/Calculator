@@ -1,8 +1,6 @@
-package rayumov.calculator;
+package main;
 
-public class Main {
-
-
+public class App {
     public static void main(String[] args) {
         MainWindow mainWindow = new MainWindow();
         mainWindow.run();
