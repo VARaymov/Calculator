@@ -21,4 +21,9 @@ public class MainWindow extends Application {
     public void run() {
         launch();
     }
+
+    public static void main(String[] args) {
+        MainWindow mainWindow = new MainWindow();
+        mainWindow.run();
+    }
 }

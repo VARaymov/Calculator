@@ -7,12 +7,12 @@
 
 <AnchorPane styleClass="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
 
-    <HBox>
+    <HBox prefHeight="450.0" prefWidth="861.0">
         <VBox prefHeight="450.0" prefWidth="576.0">
             <children>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                        <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="26.0" prefWidth="700.0" text="Show History" textAlignment="CENTER">
+                        <Button fx:id="showHistory" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#command" prefHeight="26.0" prefWidth="602.0" text="Show/Hide History" textAlignment="CENTER">
                             <opaqueInsets>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </opaqueInsets>
@@ -25,14 +25,14 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </ButtonBar>
-                <TextField fx:id="text_result" prefHeight="92.0" prefWidth="470.0">
+                <TextField fx:id="result" prefHeight="45.0" prefWidth="549.0">
                     <VBox.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </TextField>
                 <HBox prefHeight="27.0" prefWidth="400.0">
                     <children>
-                        <Button fx:id="seven" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="7" textAlignment="CENTER">
+                        <Button fx:id="seven" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="7" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -40,7 +40,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="eight" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="8" textAlignment="CENTER">
+                        <Button fx:id="eight" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="8" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -48,7 +48,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="nine" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="9" textAlignment="CENTER">
+                        <Button fx:id="nine" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="9" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -56,7 +56,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="division" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="÷" textAlignment="CENTER">
+                        <Button fx:id="division" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="÷" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -64,52 +64,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="exponentiation" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="y^x" textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Button>
-
-                    </children>
-                </HBox>
-                <HBox prefHeight="27.0" prefWidth="400.0">
-                    <children>
-                        <Button fx:id="four" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="4" textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="five" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="5" textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="six" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="6" textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="multiplication" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="*" textAlignment="CENTER">
-                            <HBox.margin>
-                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                            </HBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="rootOfNumber" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="√" textAlignment="CENTER">
+                        <Button fx:id="exponentiation" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="y^x" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -122,7 +77,7 @@
                 </HBox>
                 <HBox prefHeight="27.0" prefWidth="400.0">
                     <children>
-                        <Button fx:id="one" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="1" textAlignment="CENTER">
+                        <Button fx:id="four" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="4" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -130,7 +85,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="two" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="2" textAlignment="CENTER">
+                        <Button fx:id="five" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="5" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -138,7 +93,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="three" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="3" textAlignment="CENTER">
+                        <Button fx:id="six" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="6" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -146,7 +101,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="plus" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="+" textAlignment="CENTER">
+                        <Button fx:id="multiplication" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="*" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -154,7 +109,52 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="minus" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="-" textAlignment="CENTER">
+                        <Button fx:id="rootOfNumber" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="√" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+
+                    </children>
+                </HBox>
+                <HBox prefHeight="27.0" prefWidth="400.0">
+                    <children>
+                        <Button fx:id="one" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="1" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="two" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="2" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="three" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="3" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="plus" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="+" textAlignment="CENTER">
+                            <HBox.margin>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </HBox.margin>
+                            <font>
+                                <Font size="28.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="minus" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="-" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -166,7 +166,7 @@
                 </HBox>
                 <HBox prefHeight="27.0" prefWidth="400.0">
                     <children>
-                        <Button fx:id="zero" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="0" textAlignment="CENTER">
+                        <Button fx:id="zero" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="0" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -174,7 +174,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="plusMinus" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="+/-" textAlignment="CENTER">
+                        <Button fx:id="plusMinus" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="+/-" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -182,7 +182,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="point" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="." textAlignment="CENTER">
+                        <Button fx:id="point" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="." textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -190,7 +190,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="equally" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="=" textAlignment="CENTER">
+                        <Button fx:id="equally" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="=" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -198,7 +198,7 @@
                                 <Font size="28.0" />
                             </font>
                         </Button>
-                        <Button fx:id="clear" mnemonicParsing="false" prefHeight="60.0" prefWidth="94.0" text="C" textAlignment="CENTER">
+                        <Button fx:id="clear" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="C" textAlignment="CENTER">
                             <HBox.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </HBox.margin>
@@ -212,12 +212,11 @@
 
             </children>
         </VBox>
-        <Pane fx:id="pane" prefHeight="338.0" prefWidth="196.0" visible="false">
-            <children>
-                <TextArea fx:id="textHistory" layoutX="4.0" layoutY="16.0" prefHeight="424.0" prefWidth="188.0" />
-            </children>
-        </Pane>
-
+        <ListView fx:id="history" prefHeight="430.0" prefWidth="269.0">
+            <HBox.margin>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
+        </ListView>
     </HBox>
 
 

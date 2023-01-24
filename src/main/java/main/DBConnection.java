@@ -15,7 +15,7 @@ public class DBConnection {
     }
 
     private void connect() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:h2:mem:calculatorDB");
+        connection = DriverManager.getConnection("jdbc:h2:mem:testdb");
         statement = connection.createStatement();
         statement.executeUpdate("create table if not exists calculator (\n" +
                 "    id bigserial primary key,\n" +
@@ -24,7 +24,7 @@ public class DBConnection {
 
     public void insertRecord(String record) {
         try {
-            statement.executeUpdate("insert into calculator" + " values (" + record + ");");
+            statement.executeUpdate("insert into calculator(result) values ('" + record + "')");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -37,6 +37,4 @@ public class DBConnection {
             throw new RuntimeException(e);
         }
     }
-
-
 }
