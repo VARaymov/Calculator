@@ -25,12 +25,10 @@ public class MainController implements Initializable {
 
     private Operation operation;
     private Double firstNumber, secondNumber, value;
-    private Operation lastOperation;
 
     public void command(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         String command = button.getId();
-        System.out.println(command);
         switch (command) {
             case "zero":
                 addNumber("0");
@@ -71,6 +69,9 @@ public class MainController implements Initializable {
             case "clear":
                 clearResult();
                 break;
+            case "delete":
+                deleteNumber();
+                break;
             case "plus":
                 addition();
                 break;
@@ -98,6 +99,13 @@ public class MainController implements Initializable {
         }
     }
 
+    private void deleteNumber() {
+        if (result.getText().length() > 0) {
+            String text = result.getText().substring(0, result.getText().length() - 1);
+            result.setText(text);
+        }
+    }
+
     private void addNumber(String number) {
         result.setText(result.getText() + number);
     }
@@ -112,9 +120,9 @@ public class MainController implements Initializable {
 
     private void addPoint() {
         if (result.getText().isEmpty()) {
-            result.setText("0.");
-        } else if (!result.getText().contains(".")) {
-            result.setText(result.getText() + ".");
+            result.setText("0,");
+        } else if (!result.getText().contains(",")) {
+            result.setText(result.getText() + ",");
         }
     }
 
@@ -126,124 +134,132 @@ public class MainController implements Initializable {
     }
 
     private void addition() {
-        firstNumber = Double.parseDouble(result.getText());
+        String text = result.getText();
+        if (text.isEmpty()) {
+            return;
+        }
+        if (text.contains(",")) {
+            String replace = text.replace(",", ".");
+            firstNumber = Double.parseDouble(replace);
+        } else {
+            firstNumber = Double.parseDouble(text);
+        }
         result.setText("");
         operation = Operation.PLUS;
     }
 
     private void subtraction() {
-        firstNumber = Double.parseDouble(result.getText());
+        String text = result.getText();
+        if (text.isEmpty()) {
+            return;
+        }
+        if (text.contains(",")) {
+            String replace = text.replace(",", ".");
+            firstNumber = Double.parseDouble(replace);
+        } else {
+            firstNumber = Double.parseDouble(text);
+        }
         result.setText("");
         operation = Operation.MINUS;
     }
 
     private void multiply() {
-        firstNumber = Double.parseDouble(result.getText());
+        String text = result.getText();
+        if (text.isEmpty()) {
+            return;
+        }
+        if (text.contains(",")) {
+            String replace = text.replace(",", ".");
+            firstNumber = Double.parseDouble(replace);
+        } else {
+            firstNumber = Double.parseDouble(text);
+        }
         result.setText("");
         operation = Operation.MULTIPLICATION;
     }
 
     private void division() {
-        firstNumber = Double.parseDouble(result.getText());
+        String text = result.getText();
+        if (text.isEmpty()) {
+            return;
+        }
+        if (text.contains(",")) {
+            String replace = text.replace(",", ".");
+            firstNumber = Double.parseDouble(replace);
+        } else {
+            firstNumber = Double.parseDouble(text);
+        }
         result.setText("");
         operation = Operation.DIVISION;
     }
 
     private void raiseToDegree() {
-        firstNumber = Double.parseDouble(result.getText());
+        String text = result.getText();
+        if (text.isEmpty()) {
+            return;
+        }
+        if (text.contains(",")) {
+            String replace = text.replace(",", ".");
+            firstNumber = Double.parseDouble(replace);
+        } else {
+            firstNumber = Double.parseDouble(text);
+        }
         result.setText("");
         operation = Operation.EXPONENTIATION;
     }
 
-    private void extractRoot() { // извлечь корень
+    private void extractRoot() {
         firstNumber = Double.parseDouble(result.getText());
         operation = Operation.ROOT_OF_NUMBER;
         calculate();
     }
 
     private void calculate() {
-        if (!result.getText().isEmpty() && !isOperationRepeat(operation)) {
+        if (operation == null) {
+            return;
+        }
+        if (!result.getText().isEmpty()) {
             secondNumber = Double.parseDouble(result.getText());
         }
 
         if (operation == Operation.PLUS) {
-            if (isOperationRepeat(Operation.PLUS)) {
-                System.out.println("OPERATION IS REPEAT");
-                Double temp = value;
-                value += secondNumber;
-                connection.insertRecord(String.format("%f + %f = %f", temp, secondNumber, value));
-            } else {
-                System.out.println("OPERATION IS NOT REPEAT");
-                value = firstNumber + secondNumber;
-                connection.insertRecord(String.format("%f + %f = %f", firstNumber, secondNumber, value));
-                lastOperation = Operation.PLUS;
-            }
-            result.setText(String.valueOf(value));
+            value = firstNumber + secondNumber;
+            connection.insertRecord(String.format("%f + %f = %f", firstNumber, secondNumber, value));
+            result.setText(String.format("%f", value));
             updateHistory();
+            operation = null;
         }
 
         if (operation == Operation.MINUS) {
-            if (isOperationRepeat(Operation.MINUS)) {
-                System.out.println("OPERATION IS REPEAT");
-                Double temp = value;
-                value -= secondNumber;
-                connection.insertRecord(String.format("%f - %f = %f", temp, secondNumber, value));
-            } else {
-                System.out.println("OPERATION IS NOT REPEAT");
-                value = firstNumber - secondNumber;
-                connection.insertRecord(String.format("%f - %f = %f", firstNumber, secondNumber, value));
-                lastOperation = Operation.MINUS;
-            }
-            result.setText(String.valueOf(value));
+            value = firstNumber - secondNumber;
+            connection.insertRecord(String.format("%f - %f = %f", firstNumber, secondNumber, value));
+            result.setText(String.format("%f", value));
             updateHistory();
+            operation = null;
         }
 
         if (operation == Operation.MULTIPLICATION) {
-            if (isOperationRepeat(Operation.MULTIPLICATION)) {
-                System.out.println("OPERATION IS REPEAT");
-                Double temp = value;
-                value *= secondNumber;
-                connection.insertRecord(String.format("%f * %f = %f", temp, secondNumber, value));
-            } else {
-                System.out.println("OPERATION IS NOT REPEAT");
-                value = firstNumber * secondNumber;
-                connection.insertRecord(String.format("%f * %f = %f", firstNumber, secondNumber, value));
-                lastOperation = Operation.MULTIPLICATION;
-            }
-            result.setText(String.valueOf(value));
+            value = firstNumber * secondNumber;
+            connection.insertRecord(String.format("%f * %f = %f", firstNumber, secondNumber, value));
+            result.setText(String.format("%f", value));
             updateHistory();
+            operation = null;
         }
 
         if (operation == Operation.DIVISION) {
-            if (isOperationRepeat(Operation.DIVISION)) {
-                System.out.println("OPERATION IS REPEAT");
-                Double temp = value;
-                value /= secondNumber;
-                connection.insertRecord(String.format("%f / %f = %f", temp, secondNumber, value));
-            } else {
-                System.out.println("OPERATION IS NOT REPEAT");
-                value = firstNumber / secondNumber;
-                connection.insertRecord(String.format("%f / %f = %f", firstNumber, secondNumber, value));
-                lastOperation = Operation.DIVISION;
-            }
-            result.setText(String.valueOf(value));
+            value = firstNumber / secondNumber;
+            connection.insertRecord(String.format("%f / %f = %f", firstNumber, secondNumber, value));
+            result.setText(String.format("%f", value));
             updateHistory();
+            operation = null;
         }
 
         if (operation == Operation.EXPONENTIATION) {
-            if (isOperationRepeat(Operation.EXPONENTIATION)) {
-                System.out.println("OPERATION IS REPEAT");
-                Double temp = value;
-                value = Math.pow(value, secondNumber);
-                connection.insertRecord(String.format("%f ^ %f = %f", temp, secondNumber, value));
-            } else {
-                System.out.println("OPERATION IS NOT REPEAT");
-                value = Math.pow(firstNumber, secondNumber);
-                connection.insertRecord(String.format("%f ^ %f = %f", firstNumber, secondNumber, value));
-                lastOperation = Operation.EXPONENTIATION;
-            }
-            result.setText(String.valueOf(value));
+            value = Math.pow(firstNumber, secondNumber);
+            connection.insertRecord(String.format("%f ^ %f = %f", firstNumber, secondNumber, value));
+            result.setText(String.format("%f", value));
             updateHistory();
+            operation = null;
         }
 
         if (operation == Operation.ROOT_OF_NUMBER) {
@@ -252,6 +268,7 @@ public class MainController implements Initializable {
             result.setText(value.toString());
             connection.insertRecord(String.format("√%s = %s", text, value));
             updateHistory();
+            operation = null;
         }
     }
 
@@ -270,16 +287,11 @@ public class MainController implements Initializable {
             history.getItems().clear();
             while (resultSet.next()) {
                 String value = resultSet.getString("result");
-                System.out.println(value);
                 history.getItems().add(value);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean isOperationRepeat(Operation operation) {
-        return operation == lastOperation;
     }
 
     @Override

@@ -7,7 +7,7 @@
 
 <AnchorPane styleClass="root" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
 
-    <HBox prefHeight="450.0" prefWidth="861.0">
+    <HBox prefHeight="450.0" prefWidth="862.0">
         <VBox prefHeight="450.0" prefWidth="576.0">
             <children>
                 <ButtonBar prefHeight="40.0" prefWidth="200.0">
@@ -25,11 +25,26 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </ButtonBar>
-                <TextField fx:id="result" prefHeight="45.0" prefWidth="549.0">
-                    <VBox.margin>
+            <HBox prefHeight="68.0" prefWidth="574.0">
+               <children>
+                      <TextField fx:id="result" prefHeight="46.0" prefWidth="463.0">
+                     <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </TextField>
+                     </HBox.margin>
+                      </TextField>
+                  <Button fx:id="delete" mnemonicParsing="false" onAction="#command" prefHeight="47.0" prefWidth="72.0" text="&lt;--">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
                 <HBox prefHeight="27.0" prefWidth="400.0">
                     <children>
                         <Button fx:id="seven" mnemonicParsing="false" onAction="#command" prefHeight="60.0" prefWidth="94.0" text="7" textAlignment="CENTER">
